@@ -11,6 +11,8 @@ If you implement opening a wallet in your language of choice, please send a pull
 
 Note that this document only applies to wallets using 'WalletBackend', not wallet using 'WalletGreen'.
 
+For your convenience, a brand new, empty wallet is included - [test.wallet](test.wallet). It is using the password, `password`.
+
 ## Opening a wallet file
 
 ![A visual representation of a wallet file](highlevel.png)
