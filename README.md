@@ -96,7 +96,7 @@ Below follows an example wallet JSON.
 
 I'll go through most of the fields.
 
-```json
+```
 {
     /* Object - Contains each individual 'subWallet', along with keys and transctions. */
     "subWallets": {
