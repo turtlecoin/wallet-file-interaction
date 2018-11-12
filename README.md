@@ -92,42 +92,89 @@ Write the 'Is A Wallet' identifier to the file. Then, write the salt to the file
 
 ## The JSON Schema
 
-TODO
-
 Below follows an example wallet JSON.
+
+I'll go through most of the fields.
 
 ```json
 {
+    /* Object - Contains each individual 'subWallet', along with keys and transctions. */
     "subWallets": {
+        /* Boolean - Is the wallet a view only wallet or not. View only wallets will have a privateSpendKey of all zeros. */
         "isViewWallet": false,
+
+        /* [Object] - Stores transactions that have been sent by the user (outgoing), but have not been added to a block yet */
         "lockedTransactions": [],
+
+        /* String - 64 char hex string that represents the shared, private view key */
         "privateViewKey": "a12fb5354388565c6967933a64a5e9a07566629b9beb077f20ca7f37b4abdc06",
+
+        /* [String] - Stores the public spend keys of the subwallets. Each are 64 char hex strings. */
         "publicSpendKeys": [
             "805d665df31f9e09ce136bbcb2be26f567ea9fb803d5dcaabf28183b2e3aeaa7"
         ],
+
+        /* [Object] - An array of subwallets. Contains keys, transaction inputs, etc */
         "subWallet": [
             {
+                /* String - This subwallets address */
                 "address": "TRTLuzkwbBJhfbwyeU1KsHWu2gBGMzwew1eD5HBBFSp28jVSMx81nX1UhFyJmw8QmBconoEw4qT26Xnsj1KBB3wY6pxDoKpdy7A",
+
+                /* Boolean - Is this subwallet the 'primary' subwallet? This is usually the first one created, and is used for sending change to when not specified */
                 "isPrimaryAddress": true,
+
+                /* [Object] - Inputs which have been spent in an outgoing transaction, but not added to a block yet */
                 "lockedInputs": [],
+
+                /* String - 64 char hex string that represents this subwallets private spend key (Will be all zeros if view only wallet) */
                 "privateSpendKey": "da5d5d7135cc0315e8bef28fe9ea9aad641ecbc7303e9a2aa2b3ac8afdfdc800",
+
+                /* String - 64 char hex string that represents this subwallets public spend key (Duplicated in publicSpendKeys above) */
                 "publicSpendKey": "805d665df31f9e09ce136bbcb2be26f567ea9fb803d5dcaabf28183b2e3aeaa7",
+
+                /* [Object] - Inputs which have been spent in an outgoing transaction */
                 "spentInputs": [],
+
+                /* Number - The height to begin requesting blocks from. Ignored if syncStartTimestamp != 0 */
                 "syncStartHeight": 0,
+
+                /* Number - The timestamp to begin request blocks from. Ignored if syncStartHeight != 0 */
                 "syncStartTimestamp": 1541973731,
+
+                /* [Object] - Inputs which have not been spent */
                 "unspentInputs": [
                     {
+                        /* Number - The value of this input, in atomic units */
                         "amount": 1,
+
+                        /* Number - The block height this input was received at */
                         "blockHeight": 965863,
+
+                        /* Number - The index of this input in the global database */
                         "globalOutputIndex": 927274,
+
+                        /* The key of this input */
                         "key": "97d5c998bcf73a0e05dc91600c9dc0bb1d8a5de8f4474c2184426ecad9641efe",
+
+                        /* String - The key image of this input */ 
                         "keyImage": "521aa5d09c675071f7d1a5e527b20395970cc63b9f0f1424659a3ee375bff764",
+
+                        /* String - The transaction hash this input was received in */
                         "parentTransactionHash": "ddc1bd59d5007d2b897be91c34bcfe69702f8aa0d6393b677685b53a625f3e98",
+
+                        /* Number - The height this input was spent at (0 if unspent) */
                         "spendHeight": 0,
+
+                        /* Number - The index of this input in the transaction it was received in */
                         "transactionIndex": 0,
+
+                        /* String - The public key of the transaction this input was received in */
                         "transactionPublicKey": "ff45191c075d4e5fda81c448c1f4ae87bfab0d9a9c6524aaa3c9c07a6b5b81d7",
+
+                        /* Number - The time this input unlocks at. If >= 500000000, treated as a timestamp. Else, treated as a block height. Cannot be spent till unlocked. */
                         "unlockTime": 0
                     },
+                    /* As above */
                     {
                         "amount": 10,
                         "blockHeight": 965863,
@@ -167,37 +214,71 @@ Below follows an example wallet JSON.
                 ]
             }
         ],
+        /* [Object] - Any transactions which are in a block */
         "transactions": [
             {
+                /* Number - The block height this transaction was included in */
                 "blockHeight": 965863,
+
+                /* Number - The fee used on this transaction (in atomic units) */
                 "fee": 10,
+
+                /* String - The hash of this transaction */
                 "hash": "ddc1bd59d5007d2b897be91c34bcfe69702f8aa0d6393b677685b53a625f3e98",
+
+                /* Boolean - Is this transaction a 'coinbase'/miner reward transaction */
                 "isCoinbaseTransaction": false,
+
+                /* String - The payment ID used in this transaction (may be the empty string) */
                 "paymentID": "7fe73bd90ef05dea0b5c15fc78696619c50dd5f2ba628f2fd16a2e3445b1922f",
+
+                /* Number - The timestamp of the block this transaction was included in (unix style) */
                 "timestamp": 1541980957,
+
+                /* [Object] - The amounts and destinations of the transaction. Amounts can be positive and negative if sending from one container address to another. */
                 "transfers": [
                     {
+                        /* Number - The amount of this transaction destination */
                         "amount": 1111,
+
+                        /* String - The public spend key this transaction was sent to. Must be present in this wallet container */
                         "publicKey": "805d665df31f9e09ce136bbcb2be26f567ea9fb803d5dcaabf28183b2e3aeaa7"
                     }
                 ],
+                /* Number - The time this transaction unlocks at. If >= 500000000, treated as a timestamp. Else, treated as a block height. Cannot be spent till unlocked. */
                 "unlockTime": 0
             }
         ]
     },
+    /* Number - The format of the wallet file. May change in the future. */
     "walletFileFormatVersion": 0,
+
+    /* Object - Data used to help store the wallet synchronization state */
     "walletSynchronizer": {
+        /* String - The private view key used to decrypt transactions */
         "privateViewKey": "a12fb5354388565c6967933a64a5e9a07566629b9beb077f20ca7f37b4abdc06",
+
+        /* Number - The height to begin requesting blocks from. Ignored if syncStartTimestamp != 0 */
         "startHeight": 0,
+
+        /* Number - The timestamp to begin request blocks from. Ignored if syncStartHeight != 0 */
         "startTimestamp": 1541973731,
+
+        /* Object - The synchronization status of transactions */
         "transactionSynchronizerStatus": {
+
+            /* [String] - Block hash checkpoints taken by default every 5k blocks. Useful for if a very deep fork occurs. */
             "blockHashCheckpoints": [
                 "bfee487de34f1640d72075a8a582407c8cff32fbe26455cd7ddb756ac4dfffa4"
             ],
+
+            /* [String] - Block hash checkpoints of the last (up to) 100 blocks. The first hashes are the newer ones. */
             "lastKnownBlockHashes": [
                 "dadf6e1a5d789948448c3b252bfaeff6bc38c7e7e8c91125a9471792399e076e",
                 "d2ece1b159c3132fda6bfc618ee31cb46b0ad8a479f02d486d6f650f7cd7e27e",
             ],
+
+            /* Number - The last block we scanned */
             "lastKnownBlockHeight": 965868
         }
     }
