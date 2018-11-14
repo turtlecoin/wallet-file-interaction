@@ -23,10 +23,7 @@ int main()
 bool openWallet(const std::string filename, const std::string password)
 {
     /* Open in binary mode, since we have encrypted data */
-    std::ifstream file(filename, std::ios::binary);
-
-    /* Stop eating white space in binary mode!!! :(((( */
-    file.unsetf(std::ios::skipws);
+    std::ifstream file(filename, std::ios_base::binary);
 
     /* Check we successfully opened the file */
     if (!file)
@@ -34,9 +31,10 @@ bool openWallet(const std::string filename, const std::string password)
         std::cout << "Failed to open file!" << std::endl;
         return false;
     }
+
     /* Read file into a buffer */
-    std::vector<unsigned char> buffer((std::istream_iterator<unsigned char>(file)),
-                                      (std::istream_iterator<unsigned char>()));
+    std::vector<char> buffer((std::istreambuf_iterator<char>(file)),
+                             (std::istreambuf_iterator<char>()));
 
     /* Check that the decrypted data has the 'isAWallet' identifier,
        and remove it it does. If it doesn't, return an error. */
@@ -45,8 +43,10 @@ bool openWallet(const std::string filename, const std::string password)
         return false;
     }
 
+    using namespace CryptoPP;
+
     /* The salt we use for both PBKDF2, and AES decryption */
-    CryptoPP::byte salt[16];
+    byte salt[16];
 
     /* Check the file is large enough for the salt */
     if (buffer.size() < sizeof(salt))
@@ -62,40 +62,31 @@ bool openWallet(const std::string filename, const std::string password)
     buffer.erase(buffer.begin(), buffer.begin() + sizeof(salt));
 
     /* The key we use for AES decryption, generated with PBKDF2 */
-    CryptoPP::byte key[16];
+    byte key[16];
 
     /* Using SHA256 as the algorithm */
-    CryptoPP::PKCS5_PBKDF2_HMAC<CryptoPP::SHA256> pbkdf2;
+    PKCS5_PBKDF2_HMAC<SHA256> pbkdf2;
 
     /* Generate the AES Key using pbkdf2 */
     pbkdf2.DeriveKey(
-        key, sizeof(key), 0, (CryptoPP::byte *)password.data(),
+        key, sizeof(key), 0, (byte *)password.c_str(),
         password.size(), salt, sizeof(salt), PBKDF2_ITERATIONS
     );
 
-    /* Intialize aesDecryption with the AES Key */
-    CryptoPP::AES::Decryption aesDecryption(key, sizeof(key));
+    CBC_Mode<AES>::Decryption cbcDecryption;
 
-    /* Using CBC encryption, pass in the salt */
-    CryptoPP::CBC_Mode_ExternalCipher::Decryption cbcDecryption(
-        aesDecryption, salt
-    );
+    /* Initialize our decrypter with the key and salt/iv */
+    cbcDecryption.SetKeyWithIV(key, sizeof(key), salt);
 
     /* This will store the decrypted data */
     std::string decryptedData;
 
-    /* Stream the decrypted data into the decryptedData string */
     try
     {
-        CryptoPP::StreamTransformationFilter stfDecryptor(
-            cbcDecryption, new CryptoPP::StringSink(decryptedData)
+        /* Decrypt, handling padding */
+        StringSource((byte *)buffer.data(), buffer.size(), true, new StreamTransformationFilter(
+            cbcDecryption, new StringSink(decryptedData))
         );
-
-        /* Write the data to the AES decryptor stream */
-        stfDecryptor.Put(reinterpret_cast<const CryptoPP::byte *>(buffer.data()),
-                         buffer.size());
-
-        stfDecryptor.MessageEnd();
     }
     /* do NOT report an alternate error for invalid padding. It allows them
        to do a padding oracle attack, I believe. Just report the wrong password
