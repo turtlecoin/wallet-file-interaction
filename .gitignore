@@ -9,3 +9,4 @@ doc/api
 .packages
 Rust/target/
 Rust/Cargo.lock
+nimcache
