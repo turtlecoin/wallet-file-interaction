@@ -5,6 +5,4 @@ environment:
 
 dependencies:
   collection: any
-  pbkdf2:
-    git: git://github.com/jamesots/pbkdf2.git
   pointycastle: any

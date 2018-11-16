@@ -2,11 +2,6 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:collection/collection.dart';
-
-/* Note - this pbkdf2 implementation seems quite slow. You might want to
-   consider finding a more optimized one to speed up wallet load times */
-import 'package:pbkdf2/pbkdf2.dart';
-import 'package:crypto/crypto.dart';
 import 'package:pointycastle/pointycastle.dart';
 
 const IS_A_WALLET_IDENTIFIER = [
@@ -47,15 +42,16 @@ main() {
         /* Remove the salt */
         data = data.sublist(salt.length, data.length);
 
-        final pbkdf2 = new PBKDF2(hash: sha256);
+        final pbkdf2 = new KeyDerivator("SHA-256/HMAC/PBKDF2");
 
-        /* Hash the password with pbkdf2 */
-        final key = Uint8List.fromList(pbkdf2.generateKey(
-            'password', new String.fromCharCodes(salt), PBKDF2_ITERATIONS, 16
-        ));
+        /* Setup salt, iterations, output size */
+        pbkdf2.init(new Pbkdf2Parameters(salt, PBKDF2_ITERATIONS, 16));
+
+        /* Get the key from out pbkdf2 */
+        final key = pbkdf2.process(Uint8List.fromList('password'.codeUnits));
 
         /* Setup our aes decryption with CBC */
-        BlockCipher decryptionCipher = new PaddedBlockCipher("AES/CBC/PKCS7");
+        final decryptionCipher = new PaddedBlockCipher("AES/CBC/PKCS7");
 
         /* Add key and salt/iv */
         CipherParameters params = new PaddedBlockCipherParameters(
