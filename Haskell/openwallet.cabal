@@ -1,0 +1,24 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.1.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 4bcfaa41e229ddd1d44a03fecf5bd251c00e793021d1bbed1765a34a3408ad41
+
+name:           openwallet
+version:        0.0.0
+build-type:     Simple
+
+executable openwallet
+  main-is: openwallet.hs
+  other-modules:
+      Paths_openwallet
+  hs-source-dirs:
+      src
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , bytestring
+    , cryptonite
+  default-language: Haskell2010

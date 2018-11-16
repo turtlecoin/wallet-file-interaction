@@ -10,3 +10,4 @@ doc/api
 Rust/target/
 Rust/Cargo.lock
 nimcache
+.stack-work
