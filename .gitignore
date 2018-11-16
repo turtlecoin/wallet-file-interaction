@@ -7,3 +7,5 @@ build
 doc/api
 .dart_tool/
 .packages
+Rust/target/
+Rust/Cargo.lock
