@@ -2,3 +2,8 @@
 *.o
 openwallet
 node_modules
+pubspec.lock
+build
+doc/api
+.dart_tool/
+.packages

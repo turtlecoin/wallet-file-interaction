@@ -4,10 +4,11 @@ This document sets out the format of wallet files used by the TurtleCoin softwar
 
 Code examples to open wallet files are given in the subdirectories - A few common languages have been included. So far, there are implementations in:
 
-* [C++](https://github.com/turtlecoin/wallet-file-interaction/tree/master/cpp)
+* [C++](https://github.com/turtlecoin/wallet-file-interaction/tree/master/Cpp)
 * [C#](https://github.com/turtlecoin/wallet-file-interaction/tree/master/C%23)
 * [NodeJS](https://github.com/turtlecoin/wallet-file-interaction/tree/master/NodeJS)
 * [Python](https://github.com/turtlecoin/wallet-file-interaction/tree/master/Python)
+* [Dart](https://github.com/turtlecoin/wallet-file-interaction/tree/master/Dart)
 
 If you implement opening a wallet in your language of choice, please send a pull request to help out other users!
 

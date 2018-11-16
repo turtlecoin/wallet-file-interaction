@@ -1,0 +1,10 @@
+name: wallet_file_interaction
+
+environment:
+  sdk: '>=2.0.0 <3.0.0'
+
+dependencies:
+  collection: any
+  pbkdf2:
+    git: git://github.com/jamesots/pbkdf2.git
+  pointycastle: any
