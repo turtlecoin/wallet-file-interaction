@@ -12,6 +12,7 @@ Code examples to open wallet files are given in the subdirectories - A few commo
 * [Rust](https://github.com/turtlecoin/wallet-file-interaction/tree/master/Rust)
 * [Nim](https://github.com/turtlecoin/wallet-file-interaction/tree/master/Nim)
 * [Haskell](https://github.com/turtlecoin/wallet-file-interaction/tree/master/Haskell)
+* [Golang](https://github.com/turtlecoin/wallet-file-interaction/tree/master/Go)
 
 If you implement opening a wallet in your language of choice, please send a pull request to help out other users!
 
