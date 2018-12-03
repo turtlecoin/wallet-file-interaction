@@ -77,5 +77,5 @@ fs.readFile(walletFile, (err, data) => {
     decrypted = decrypted.slice(IS_CORRECT_PASSWORD_IDENTIFIER.length, decrypted.length);
 
     /* Print out the data */
-    console.log(JSON.parse(decrypted));
+    console.log(JSON.stringify(JSON.parse(decrypted), null, 4));
 });

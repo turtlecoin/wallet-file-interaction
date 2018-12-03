@@ -111,111 +111,186 @@ I'll go through most of the fields.
         "isViewWallet": false,
 
         /* [Object] - Stores transactions that have been sent by the user (outgoing), but have not been added to a block yet */
-        "lockedTransactions": [],
+        "lockedTransactions": [
+            {
+                "blockHeight": 0,
+                "fee": 10,
+                "hash": "486281aa8fbaa10fc48fc24a9f7ed1d1f7195683b980a22900832c7cb098b790",
+                "isCoinbaseTransaction": false,
+                "paymentID": "",
+                "timestamp": 0,
+                "transfers": [
+                    {
+                        "amount": -133,
+                        "publicKey": "0cf52f52dc611ff5d832f0c5c5886efdacd9cebe2b5ed0fa9078372ecf7f4508"
+                    }
+                ],
+                "unlockTime": 0
+            }
+        ],
 
         /* String - 64 char hex string that represents the shared, private view key */
-        "privateViewKey": "a12fb5354388565c6967933a64a5e9a07566629b9beb077f20ca7f37b4abdc06",
+        "privateViewKey": "8e5cd4ee272df7ad3a0c9f661d7b0fee1ec91efee96a3f449921beeb9c2d3400",
 
         /* [String] - Stores the public spend keys of the subwallets. Each are 64 char hex strings. */
         "publicSpendKeys": [
-            "805d665df31f9e09ce136bbcb2be26f567ea9fb803d5dcaabf28183b2e3aeaa7"
+            "0cf52f52dc611ff5d832f0c5c5886efdacd9cebe2b5ed0fa9078372ecf7f4508"
         ],
 
         /* [Object] - An array of subwallets. Contains keys, transaction inputs, etc */
         "subWallet": [
             {
                 /* String - This subwallets address */
-                "address": "TRTLuzkwbBJhfbwyeU1KsHWu2gBGMzwew1eD5HBBFSp28jVSMx81nX1UhFyJmw8QmBconoEw4qT26Xnsj1KBB3wY6pxDoKpdy7A",
+                "address": "TRTLuwor1VsdrxTb6noiLLa3KPN4dnZSm8FkKqK43hyXbhyyHVWin2j13ktgSVDxyc6KiCpZwtjLYNUJyWEhxuhpNFzm6cXSoxi",
 
                 /* Boolean - Is this subwallet the 'primary' subwallet? This is usually the first one created, and is used for sending change to when not specified */
                 "isPrimaryAddress": true,
 
                 /* [Object] - Inputs which have been spent in an outgoing transaction, but not added to a block yet */
-                "lockedInputs": [],
-
+                "lockedInputs": [
+                    {
+                        "amount": 300,
+                        "blockHeight": 1026208,
+                        "globalOutputIndex": 1304817,
+                        "key": "97a3bc4e9a9094e3baa6dbff0146e7872d311ce3e11012c930d12b541f90246f",
+                        "keyImage": "be7c949b2335ff9d604b0bc1aaad8280aa081ae69085bf5fbf2ed60ab147dd7b",
+                        "parentTransactionHash": "87373e7bef5171c1601528891062796397d4843b74ce771133dd267756aabad3",
+                        "spendHeight": 0,
+                        "transactionIndex": 4,
+                        "transactionPublicKey": "80b4334b6c172a4b45f070cb1132ae7ffa693b57799c2ab74c3dcf1362a451f9",
+                        "unlockTime": 0
+                    }
+                ],
                 /* String - 64 char hex string that represents this subwallets private spend key (Will be all zeros if view only wallet) */
-                "privateSpendKey": "da5d5d7135cc0315e8bef28fe9ea9aad641ecbc7303e9a2aa2b3ac8afdfdc800",
+                "privateSpendKey": "a76e7b6f492eacc1598364aab2af339f2f9ba83a780f941672331fcb05be900e",
 
                 /* String - 64 char hex string that represents this subwallets public spend key (Duplicated in publicSpendKeys above) */
-                "publicSpendKey": "805d665df31f9e09ce136bbcb2be26f567ea9fb803d5dcaabf28183b2e3aeaa7",
+                "publicSpendKey": "0cf52f52dc611ff5d832f0c5c5886efdacd9cebe2b5ed0fa9078372ecf7f4508",
 
                 /* [Object] - Inputs which have been spent in an outgoing transaction */
-                "spentInputs": [],
-
+                "spentInputs": [
+                    {
+                        "amount": 4,
+                        "blockHeight": 1026192,
+                        "globalOutputIndex": 217339,
+                        "key": "9af8339e1596b99fdd7936da2d6396681bdbcd4a82c3c11b5e240d6e648cce83",
+                        "keyImage": "0e125ef0192eaf998191e8677b0f7288a48b8a06cec8bb6bf06a0e233ddf0be3",
+                        "parentTransactionHash": "bbacdf17dc9ec2ba31fe526b1cf7e0adaa773e25614b047476b8f0d0f1153623",
+                        "spendHeight": 1026208,
+                        "transactionIndex": 0,
+                        "transactionPublicKey": "a7d34469def42b589e5e6157482663f1fed64b3aebd950fe5518ac50be53aa04",
+                        "unlockTime": 0
+                    },
+                    {
+                        "amount": 30,
+                        "blockHeight": 1026192,
+                        "globalOutputIndex": 261605,
+                        "key": "d6876a3b391fd3e763155bcd9418078961f55cdcae0b148893036d2320cd7e41",
+                        "keyImage": "4839e4bfded513c746a15bd9fd50e69ae0d436385b721394473c52abda494876",
+                        "parentTransactionHash": "bbacdf17dc9ec2ba31fe526b1cf7e0adaa773e25614b047476b8f0d0f1153623",
+                        "spendHeight": 1026208,
+                        "transactionIndex": 2,
+                        "transactionPublicKey": "a7d34469def42b589e5e6157482663f1fed64b3aebd950fe5518ac50be53aa04",
+                        "unlockTime": 0
+                    },
+                    {
+                        "amount": 1000,
+                        "blockHeight": 1026192,
+                        "globalOutputIndex": 1688414,
+                        "key": "f72e237102f90dbb4ae26e22da7ac77d78fd17bbe2f71a5bcb2a5e5dfd70efdb",
+                        "keyImage": "87f95951d8c8676b91b2067469a3eb30abf1c1a11a072a79bf36bbe8ee2be4a0",
+                        "parentTransactionHash": "bbacdf17dc9ec2ba31fe526b1cf7e0adaa773e25614b047476b8f0d0f1153623",
+                        "spendHeight": 1026208,
+                        "transactionIndex": 6,
+                        "transactionPublicKey": "a7d34469def42b589e5e6157482663f1fed64b3aebd950fe5518ac50be53aa04",
+                        "unlockTime": 0
+                    }
+                ],
                 /* Number - The height to begin requesting blocks from. Ignored if syncStartTimestamp != 0 */
                 "syncStartHeight": 0,
-
+                
                 /* Number - The timestamp to begin request blocks from. Ignored if syncStartHeight != 0 */
-                "syncStartTimestamp": 1541973731,
+                "syncStartTimestamp": 1543790137,
 
+                /* [Object] - The amounts and keys of incoming amounts, these are transactions we have sent that come back as change */
+                "unconfirmedIncomingAmounts": [
+                    {
+                        /* Number - The value of this incoming amount */
+                        "amount": 7,
+
+                        /* String - The key the corresponding input has. This can be used to remove this entry when the full input gets confirmed */
+                        "key": "944fdc89bd4ae50f8435e89016dcd078c6e664f2257aa0fb92947b7f86437bcc",
+
+                        /* String - The transaction hash that contains this input */
+                        "parentTransactionHash": "486281aa8fbaa10fc48fc24a9f7ed1d1f7195683b980a22900832c7cb098b790"
+                    },
+                    {
+                        "amount": 60,
+                        "key": "5492bef296dd602b90cbb1348bef4492faee7ea98dd35717f1631b1ad9d68b0b",
+                        "parentTransactionHash": "486281aa8fbaa10fc48fc24a9f7ed1d1f7195683b980a22900832c7cb098b790"
+                    },
+                    {
+                        "amount": 100,
+                        "key": "c9cd332cfc3e6f5f1a4a82e8bca96be001e0acafc5bee465c55df1246fc40034",
+                        "parentTransactionHash": "486281aa8fbaa10fc48fc24a9f7ed1d1f7195683b980a22900832c7cb098b790"
+                    }
+                ],
+                
                 /* [Object] - Inputs which have not been spent */
                 "unspentInputs": [
                     {
                         /* Number - The value of this input, in atomic units */
-                        "amount": 1,
+                        "amount": 200,
 
                         /* Number - The block height this input was received at */
-                        "blockHeight": 965863,
+                        "blockHeight": 1026192,
 
                         /* Number - The index of this input in the global database */
-                        "globalOutputIndex": 927274,
+                        "globalOutputIndex": 1326110,
 
-                        /* The key of this input */
-                        "key": "97d5c998bcf73a0e05dc91600c9dc0bb1d8a5de8f4474c2184426ecad9641efe",
+                        /* String - The key of this input */
+                        "key": "32490c3654ba12894dc98cc9a915f95d5da7af73be9d315a17fbb3b7fce4c42d",
 
                         /* String - The key image of this input */ 
-                        "keyImage": "521aa5d09c675071f7d1a5e527b20395970cc63b9f0f1424659a3ee375bff764",
+                        "keyImage": "047fa9c5e10729e0ea1572c64e45622fc60f13374b687dd49650d4e83de68a17",
 
                         /* String - The transaction hash this input was received in */
-                        "parentTransactionHash": "ddc1bd59d5007d2b897be91c34bcfe69702f8aa0d6393b677685b53a625f3e98",
+                        "parentTransactionHash": "bbacdf17dc9ec2ba31fe526b1cf7e0adaa773e25614b047476b8f0d0f1153623",
 
                         /* Number - The height this input was spent at (0 if unspent) */
                         "spendHeight": 0,
 
                         /* Number - The index of this input in the transaction it was received in */
-                        "transactionIndex": 0,
+                        "transactionIndex": 4,
 
                         /* String - The public key of the transaction this input was received in */
-                        "transactionPublicKey": "ff45191c075d4e5fda81c448c1f4ae87bfab0d9a9c6524aaa3c9c07a6b5b81d7",
+                        "transactionPublicKey": "a7d34469def42b589e5e6157482663f1fed64b3aebd950fe5518ac50be53aa04",
 
                         /* Number - The time this input unlocks at. If >= 500000000, treated as a timestamp. Else, treated as a block height. Cannot be spent till unlocked. */
                         "unlockTime": 0
                     },
-                    /* As above */
                     {
-                        "amount": 10,
-                        "blockHeight": 965863,
-                        "globalOutputIndex": 257617,
-                        "key": "98e11c96032d5aeb76fcf9b02031dec7eecc99219aa74d74e559936733d3c975",
-                        "keyImage": "d2972106cafac882e5416028490d508d43afcb15601239b718467949032d1b63",
-                        "parentTransactionHash": "ddc1bd59d5007d2b897be91c34bcfe69702f8aa0d6393b677685b53a625f3e98",
+                        "amount": 6,
+                        "blockHeight": 1026208,
+                        "globalOutputIndex": 216317,
+                        "key": "6f30143575d7b221cf2ae1b5f685d8aaa3bd50bcead22939e9ff979aca96f87b",
+                        "keyImage": "4ce0aa71e59d457646399ef4ff430c15f6ecb4576e440dc95f633ceadd12a774",
+                        "parentTransactionHash": "87373e7bef5171c1601528891062796397d4843b74ce771133dd267756aabad3",
+                        "spendHeight": 0,
+                        "transactionIndex": 0,
+                        "transactionPublicKey": "80b4334b6c172a4b45f070cb1132ae7ffa693b57799c2ab74c3dcf1362a451f9",
+                        "unlockTime": 0
+                    },
+                    {
+                        "amount": 40,
+                        "blockHeight": 1026208,
+                        "globalOutputIndex": 264830,
+                        "key": "fd709eee186ecedf7988429bc742e2ceea0b9152c434157d58f7bf842f7369f5",
+                        "keyImage": "30ef3d364a62887e54870c94ad0bd787c7fbd89783f8578a75d71f143978c893",
+                        "parentTransactionHash": "87373e7bef5171c1601528891062796397d4843b74ce771133dd267756aabad3",
                         "spendHeight": 0,
                         "transactionIndex": 2,
-                        "transactionPublicKey": "ff45191c075d4e5fda81c448c1f4ae87bfab0d9a9c6524aaa3c9c07a6b5b81d7",
-                        "unlockTime": 0
-                    },
-                    {
-                        "amount": 100,
-                        "blockHeight": 965863,
-                        "globalOutputIndex": 1450184,
-                        "key": "cab2f40bff4520361da46f2795bed0a14b03d8ef6a8c279836c7bce6301977ba",
-                        "keyImage": "5ed476e983be8e1c72164ab6e7e476240aad19a8bc7d10551044b54422dbc1fe",
-                        "parentTransactionHash": "ddc1bd59d5007d2b897be91c34bcfe69702f8aa0d6393b677685b53a625f3e98",
-                        "spendHeight": 0,
-                        "transactionIndex": 4,
-                        "transactionPublicKey": "ff45191c075d4e5fda81c448c1f4ae87bfab0d9a9c6524aaa3c9c07a6b5b81d7",
-                        "unlockTime": 0
-                    },
-                    {
-                        "amount": 1000,
-                        "blockHeight": 965863,
-                        "globalOutputIndex": 1584222,
-                        "key": "241c0b9e0996ed826a02a0eee55897cd52282a9a778bd91120de7788d6044df5",
-                        "keyImage": "4cc59c3b8a5e9c62515dd65c1bc423c0eab4321e83a4ce3b86c19d81e0636bf5",
-                        "parentTransactionHash": "ddc1bd59d5007d2b897be91c34bcfe69702f8aa0d6393b677685b53a625f3e98",
-                        "spendHeight": 0,
-                        "transactionIndex": 6,
-                        "transactionPublicKey": "ff45191c075d4e5fda81c448c1f4ae87bfab0d9a9c6524aaa3c9c07a6b5b81d7",
+                        "transactionPublicKey": "80b4334b6c172a4b45f070cb1132ae7ffa693b57799c2ab74c3dcf1362a451f9",
                         "unlockTime": 0
                     }
                 ]
@@ -225,13 +300,13 @@ I'll go through most of the fields.
         "transactions": [
             {
                 /* Number - The block height this transaction was included in */
-                "blockHeight": 965863,
+                "blockHeight": 1026192,
 
                 /* Number - The fee used on this transaction (in atomic units) */
                 "fee": 10,
 
                 /* String - The hash of this transaction */
-                "hash": "ddc1bd59d5007d2b897be91c34bcfe69702f8aa0d6393b677685b53a625f3e98",
+                "hash": "bbacdf17dc9ec2ba31fe526b1cf7e0adaa773e25614b047476b8f0d0f1153623",
 
                 /* Boolean - Is this transaction a 'coinbase'/miner reward transaction */
                 "isCoinbaseTransaction": false,
@@ -240,20 +315,47 @@ I'll go through most of the fields.
                 "paymentID": "7fe73bd90ef05dea0b5c15fc78696619c50dd5f2ba628f2fd16a2e3445b1922f",
 
                 /* Number - The timestamp of the block this transaction was included in (unix style) */
-                "timestamp": 1541980957,
+                "timestamp": 1543797411,
 
                 /* [Object] - The amounts and destinations of the transaction. Amounts can be positive and negative if sending from one container address to another. */
                 "transfers": [
                     {
-                        /* Number - The amount of this transaction destination */
-                        "amount": 1111,
-
-                        /* String - The public spend key this transaction was sent to. Must be present in this wallet container */
-                        "publicKey": "805d665df31f9e09ce136bbcb2be26f567ea9fb803d5dcaabf28183b2e3aeaa7"
+                        "amount": 1234,
+                        "publicKey": "0cf52f52dc611ff5d832f0c5c5886efdacd9cebe2b5ed0fa9078372ecf7f4508"
                     }
                 ],
+
                 /* Number - The time this transaction unlocks at. If >= 500000000, treated as a timestamp. Else, treated as a block height. Cannot be spent till unlocked. */
                 "unlockTime": 0
+            },
+            {
+                "blockHeight": 1026208,
+                "fee": 10,
+                "hash": "87373e7bef5171c1601528891062796397d4843b74ce771133dd267756aabad3",
+                "isCoinbaseTransaction": false,
+                "paymentID": "2a2d91e6b6cc4aecd3c0411bfae3088771a50d3fa2e91e3acf07301dfa718692",
+                "timestamp": 1543797955,
+                "transfers": [
+                    {
+                        "amount": -688,
+                        "publicKey": "0cf52f52dc611ff5d832f0c5c5886efdacd9cebe2b5ed0fa9078372ecf7f4508"
+                    }
+                ],
+                "unlockTime": 0
+            }
+        ],
+        /* [Object] - Private keys of transactions sent by this container, and the hash they belong to. Can be used for auditing transactions */
+        "txPrivateKeys": [
+            {
+                /* String - The hash of the transaction this key belongs to */
+                "transactionHash": "486281aa8fbaa10fc48fc24a9f7ed1d1f7195683b980a22900832c7cb098b790",
+
+                /* String - The private key of this transaction */
+                "txPrivateKey": "815bbfbc835b096c79a1d0aa83f5d8c25808fe29cf51d50470853b3cea05d409"
+            },
+            {
+                "transactionHash": "87373e7bef5171c1601528891062796397d4843b74ce771133dd267756aabad3",
+                "txPrivateKey": "02085cb6c2312c01584487c88a51feb91d7617a30f4179eb86eefa261642ac0c"
             }
         ]
     },
@@ -262,31 +364,55 @@ I'll go through most of the fields.
 
     /* Object - Data used to help store the wallet synchronization state */
     "walletSynchronizer": {
+
         /* String - The private view key used to decrypt transactions */
-        "privateViewKey": "a12fb5354388565c6967933a64a5e9a07566629b9beb077f20ca7f37b4abdc06",
+        "privateViewKey": "8e5cd4ee272df7ad3a0c9f661d7b0fee1ec91efee96a3f449921beeb9c2d3400",
 
         /* Number - The height to begin requesting blocks from. Ignored if syncStartTimestamp != 0 */
         "startHeight": 0,
 
         /* Number - The timestamp to begin request blocks from. Ignored if syncStartHeight != 0 */
-        "startTimestamp": 1541973731,
+        "startTimestamp": 1543790137,
 
         /* Object - The synchronization status of transactions */
         "transactionSynchronizerStatus": {
 
             /* [String] - Block hash checkpoints taken by default every 5k blocks. Useful for if a very deep fork occurs. */
-            "blockHashCheckpoints": [
-                "bfee487de34f1640d72075a8a582407c8cff32fbe26455cd7ddb756ac4dfffa4"
-            ],
+            "blockHashCheckpoints": [],
 
             /* [String] - Block hash checkpoints of the last (up to) 100 blocks. The first hashes are the newer ones. */
             "lastKnownBlockHashes": [
-                "dadf6e1a5d789948448c3b252bfaeff6bc38c7e7e8c91125a9471792399e076e",
-                "d2ece1b159c3132fda6bfc618ee31cb46b0ad8a479f02d486d6f650f7cd7e27e",
+                "a049238bbd33d0c8af2362af7813e8439093471d5bc871aa0821640480d7bd2d",
+                "be9755e48bf9b9ff5211fc7a077f02f8197158470dd72cef2200f5dd516abfcf",
+                "16e7869b799af072e7330d00fa8b1a81262bdc8672818647ec559e2b21da7aeb",
+                "0f04401a542325047bf86b20cba4d6313abab7d3816a01146b9c50105844ddb6",
+                "42bc0a8a8eb28347965fe53c642e3feb0a06b02702e56cbf8c329e5def581f78",
+                "0344eb16d3614d631f8e1226990a968a9334deb45df4afc2997bf8819680cfee",
+                "231d679287bd2fe6af3473ca56ded91cfe637bbe993743323368574814faa83c",
+                "97896aa73a5f3fe275334f5215f3089989d0286ff4fcb208df79d42045b238a2",
+                "753102353d43d1e5218dfddf9745f92475cc0ddbd419d78bd11ac7cb31ba161d",
+                "0197d85f75ae5aa320840298f8c697e5bf030d3b78fc86f7de690f393ca7fc4f",
+                "99537c0d72883402f69331450a420d3bb4d5b39515cab3abbf05f8ac661a3c9c",
+                "231e8997ecc7ac07244dc3db7c929de1e0f69c597826200af735ce9a85f034d5",
+                "c84354ccbbe47af023d12b0f039253bc9d13de27bc6ff61855168f9f6ee6d08b",
+                "0df2244fa47d3da4c85c0cdc64c633f3653df57883b1096dc84989a59cca5978",
+                "2465b6b468eacdcfd5e6fe9c61c9feb505973691a1e4d37da666112ca965b4f8",
+                "4bc277ef0a218b0a8228957569e5f11d11eb5b41a7d3f7995792b03450c827a5",
+                "1e037d73adeebfc05900cb884c8f71398f890118f5155470331c2763da485288",
+                "415c3213879802c28564754b52cef74ba88677b8ab6c344ba833247bb24d61d6",
+                "c5ebd53d962a50ef5db613a233974907946ad20035310cef098454fcb9ecad9f",
+                "057070d23b353c2a2e10c0fe0cbeb903c48f40313c110663c38aa71982841ba7",
+                "1eb5dd11e4656e179f2704bc6a79cf4e4a9ee893f90ed0a993c39c944bffc04a",
+                "b5c1b4848a7809a50ac9a6d6296a842e1cf0cd97a05e5b79ce12536076ce7de2",
+                "6f2b1e3ac79ea036afa9d96b52acdeed6dfa2c601d684fcaa695cd5b13bc20c5",
+                "af507557cf0a09f027df357e2d806f621c8cb180abeec0af06c67e3714d95995",
+                "1f8629d36609d58e1912d47011c9fdb98ca956be3eb466f4237fc8bec8310534",
+                "cbd3762c758bd49d819a156ee2570004fd7e76d6bcb5782d8ce2740367bedbb8",
+                "368a6ea67d63edebd835b9d22a2c3b827457ef4d4630c6f743ecdf31eb522e72"
             ],
 
             /* Number - The last block we scanned */
-            "lastKnownBlockHeight": 965868
+            "lastKnownBlockHeight": 1026216
         }
     }
 }
